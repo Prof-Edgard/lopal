@@ -4,6 +4,8 @@ function calculadora(){
         let operando1;
         let operando2;
         let operador;
+        let continua;
+        let operador_valido = true;
 
         operando1 = parseFloat( prompt("Digite o primeiro número: ") );
         operando2 = parseFloat( prompt("Digite o segundo número: ") );
@@ -17,17 +19,28 @@ function calculadora(){
             resultado = operando1 * operando2;
         } else if ( operador === "/" ){
             if (operando2 == 0){
-                alert("Não é possível dividir por zero.")
-                return
+                alert("Não é possível dividir por zero.");
+                continua = prompt("Digite sim para continuar e não encerrar.");
+                if( continua === "não" ){
+                    return
+                }
+            } else {
+                resultado = operando1 / operando2;
             }
-            resultado = operando1 / operando2;
+            
         } else {
             alert("Operador inválido!");
-            return
+            operador_valido = false;
+            continua = prompt("Digite sim para continuar e não encerrar.");
+            if( continua === "não" ){
+                    return
+                }
         }
-
-        alert("Resultado: " + 
+        if( operador != "/" ||  operando2 != 0 ){
+             alert("Resultado: " + 
             operando1 + " " + operador + " " + operando2 + " = " + resultado);
+        }
+       
     }
 }
 
